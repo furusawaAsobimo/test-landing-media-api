@@ -1,0 +1,13 @@
+{
+  "require": {
+    "php": ">=5.5"
+  },
+  "autoload": {
+    "classmap": [
+      "model/"
+    ]
+  },
+  "config": {
+    "vendor-dir": "vendor/"
+  }
+}
