@@ -3,7 +3,7 @@
 require_once '../vendor/autoload.php';
 
 $api = new ICObenchAPI();
-$api->getICOs("all");
+$api->getICOs("all",["orderDesc"=>"rating","status"=>"active"]);
 
 echo $api->result;
 exit;
