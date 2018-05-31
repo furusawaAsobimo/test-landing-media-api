@@ -17,9 +17,6 @@ try{
     // 入力データの格納
     $inputData = $_POST['input'];
 
-    var_dump($inputData);
-    exit;
-
     // 問い合わせチェック
     $validate->checkContact($inputData, 'tokensky');
     // エラー内容取得
@@ -54,7 +51,10 @@ try{
         $body .= "-----------------------------\n";
 
         // メール送信
-        $mail->sendMail('y_furusawa@asobimo.com', $inputData['email'], '[tokenskyJP]お問い合わせ', $body);
+        if(!$mail->sendMail('y_furusawa@asobimo.com', $inputData['email'], '[tokenskyJP]お問い合わせ', $body)){
+            $res['errorCodeList'] = ['send'=>'failed'];
+            throw new Exception('mail send error');
+        }
     }
 
 } catch (Exception $e) {
