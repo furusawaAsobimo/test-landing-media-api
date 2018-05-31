@@ -14,6 +14,21 @@ try{
     /** @var Mail $mail */
     $mail = new Mail();
 
+    echo 'ACCESS';
+
+    /** @var SendGrid $sendgrid */
+    $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
+
+    $email = new SendGrid\Email();
+
+    $email ->addTo('y_furusawa@asobimo.com')->
+        setFrom('lalunecroit182@gmail.com')->
+        setSubject('test')->
+        setText('test');
+    $sendgrid->send($email);
+
+    echo 'send OK';
+
     // 入力データの格納
     $inputData = $_POST['input'];
 
@@ -28,7 +43,7 @@ try{
         throw new Exception('validate error');
     }
 
-    $mail->sendMail('y_furusawa@asobimo.com', $inputData['email'], '[tokenskyJP]お問い合わせ', 'test');
+//    $mail->sendMail('y_furusawa@asobimo.com', $inputData['email'], '[tokenskyJP]お問い合わせ', 'test');
     exit;
 
     // メール送信する場合
