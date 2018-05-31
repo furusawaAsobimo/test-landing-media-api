@@ -13,21 +13,10 @@ try{
     $validate = new Validate();
     /** @var Mail $mail */
     $mail = new Mail();
-
-    echo 'ACCESS';
-
     /** @var SendGrid $sendgrid */
     $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
-
+    /** @var SendGrid\Email $email */
     $email = new SendGrid\Email();
-
-    $email ->addTo('lalunecroit182@gmail.com')->
-        setFrom('moon_croit@yahoo.ne.jp')->
-        setSubject('test')->
-        setText('test');
-    var_dump($sendgrid->send($email));
-
-    echo 'send OK';
 
     // 入力データの格納
     $inputData = $_POST['input'];
@@ -42,9 +31,6 @@ try{
         $res['errorCodeList'] = $errorCodeList;
         throw new Exception('validate error');
     }
-
-//    $mail->sendMail('y_furusawa@asobimo.com', $inputData['email'], '[tokenskyJP]お問い合わせ', 'test');
-    exit;
 
     // メール送信する場合
     if(isset($_POST['send_exec']) && !empty($_POST['send_exec'])){
@@ -68,8 +54,14 @@ try{
         $body .= $inputData['content']."\n";
         $body .= "-----------------------------\n";
 
-        // メール送信
-        if(!$mail->sendMail('y_furusawa@asobimo.com', $inputData['email'], '[tokenskyJP]お問い合わせ', $body)){
+        // メール送信：準備
+        $email ->addTo('y_furusawa@asobimo.com')->
+            setFrom($inputData['email'])->
+            setSubject('[tokenskyJP]お問い合わせ')->
+            setText($body);
+
+        // メール送信：実行
+        if(!$sendgrid->send($email)){
             $res['errorCodeList'] = ['send'=>'failed'];
             throw new Exception('mail send error');
         }
