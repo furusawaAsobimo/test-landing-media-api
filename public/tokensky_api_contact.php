@@ -16,6 +16,10 @@ try{
 
     // 入力データの格納
     $inputData = $_POST['input'];
+
+    var_dump($inputData);
+    exit;
+
     // 問い合わせチェック
     $validate->checkContact($inputData, 'tokensky');
     // エラー内容取得
