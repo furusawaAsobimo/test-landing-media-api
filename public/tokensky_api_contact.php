@@ -21,11 +21,11 @@ try{
 
     $email = new SendGrid\Email();
 
-    $email ->addTo('y_furusawa@asobimo.com')->
-        setFrom('lalunecroit182@gmail.com')->
+    $email ->addTo('lalunecroit182@gmail.com')->
+        setFrom('moon_croit@yahoo.ne.jp')->
         setSubject('test')->
         setText('test');
-    $sendgrid->send($email);
+    var_dump($sendgrid->send($email));
 
     echo 'send OK';
 
