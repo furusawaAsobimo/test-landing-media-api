@@ -53,7 +53,7 @@ try{
         $body .= "-----------------------------\n";
 
         // メール送信：準備
-        $email ->addTo('y_furusawa@asobimo.com')->
+        $email ->addTo('tokensky@coincamp.jp')->
             setFrom('contact@tokensky.net')->
             setSubject('[tokenskyJP]お問い合わせ')->
             setText($body);
