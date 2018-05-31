@@ -28,6 +28,8 @@ try{
         throw new Exception('validate error');
     }
 
+    $mail->sendMail('y_furusawa@asobimo.com', $inputData['email'], '[tokenskyJP]お問い合わせ', 'test');
+
     // メール送信する場合
     if(isset($_POST['send_exec']) && !empty($_POST['send_exec'])){
 
