@@ -11,8 +11,6 @@ $res = [
 try{
     /** @var Validate $validate */
     $validate = new Validate();
-    /** @var Mail $mail */
-    $mail = new Mail();
     /** @var SendGrid $sendgrid */
     $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
     /** @var SendGrid\Email $email */
@@ -56,7 +54,7 @@ try{
 
         // メール送信：準備
         $email ->addTo('y_furusawa@asobimo.com')->
-            setFrom($inputData['email'])->
+            setFrom('contact@tokensky.net')->
             setSubject('[tokenskyJP]お問い合わせ')->
             setText($body);
 
