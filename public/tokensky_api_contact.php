@@ -17,7 +17,7 @@ try{
     // 入力データの格納
     $inputData = $_POST['input'];
     // 問い合わせチェック
-    $validate->checkContact($inputData);
+    $validate->checkContact($inputData, 'tokensky');
     // エラー内容取得
     $errorCodeList = $validate->getErrorCodeList();
 
