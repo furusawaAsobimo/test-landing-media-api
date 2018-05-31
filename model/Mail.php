@@ -5,7 +5,7 @@ class Mail
 	// メールアドレスバリデーションパターン
 	const POSIX_PATTERN_MAIL_ADDRESS = "/^[a-zA-Z0-9\-\._]+@[a-zA-Z0-9\-\._]+$/";
 
-	public function sendMail($toAddress, $fromAddress, $subject, $message, $replyTo = null)
+	public function _sendMail($toAddress, $fromAddress, $subject, $message, $replyTo = null)
 	{
 		// カレントの言語設定
 		mb_language('uni');
@@ -33,4 +33,17 @@ class Mail
 		// 送信処理->結果返却
 		return mb_send_mail($toAddress, $mailSubject, $mailBody, $headers, $param);
 	}
+
+    public function sendMail($toAddress, $fromAddress, $subject, $message, $replyTo = null)
+    {
+        $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
+
+        $email = new SendGrid\Email();
+
+        $email ->addTo($toAddress)->
+            setFrom($fromAddress)->
+            setSubject($subject)->
+            setText($message);
+        return $sendgrid->send($email);
+    }
 }

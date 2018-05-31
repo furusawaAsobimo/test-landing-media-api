@@ -1,6 +1,7 @@
 {
   "require": {
-    "php": ">=5.5"
+    "php": ">=5.5",
+    "sendgrid/sendgrid": "2.0.5"
   },
   "autoload": {
     "classmap": [
