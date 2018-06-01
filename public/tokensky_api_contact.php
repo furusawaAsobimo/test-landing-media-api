@@ -25,10 +25,10 @@ try{
     $errorCodeList = $validate->getErrorCodeList();
 
     // エラーがある場合、問い合わせTOPへリダイレクト
-    if(!empty($errorCodeList)){
-        $res['errorCodeList'] = $errorCodeList;
-        throw new Exception('validate error');
-    }
+//    if(!empty($errorCodeList)){
+//        $res['errorCodeList'] = $errorCodeList;
+//        throw new Exception('validate error');
+//    }
 
     // メール送信する場合
     if(isset($_POST['send_exec']) && !empty($_POST['send_exec'])){
