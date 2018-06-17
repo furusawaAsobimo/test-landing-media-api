@@ -53,7 +53,7 @@ try{
         $body .= "-----------------------------\n";
 
         // メール送信：準備
-        $email ->addTo('tokensky@coincamp.jp')->
+        $email ->addTo('y_furusawa@asobimo.com')->
             setFrom('contact@tokensky.net')->
             setSubject('[tokenskyJP]お問い合わせ')->
             setText($body);
@@ -69,5 +69,6 @@ try{
     $res['status'] = 'NG';
 }
 
+header('Access-Control-Allow-Origin: *');
 echo json_encode($res);
 exit;
